@@ -7,6 +7,40 @@
 /* v2.0.0
 /* ----------------------------------------------- */
 
+window.onload = async () =>{
+    const url = "https://apiwatch.herokuapp.com/saveregister";
+
+    let date = new Date();
+    let origen = 'portfolio';
+    let fecha = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear();
+    let hora = date.getHours() + ':' + date.getMinutes() + (date.getHours() >= 12 ? ' PM' : ' AM');
+    let ip = 'none';
+
+    await fetch('https://api.ipify.org?format=json')
+        .then(respuesta => respuesta.json())
+        .then(resultado => {
+            ip = resultado.ip;
+        });
+
+    console.log(ip);
+
+    const datos = {
+        time: hora,
+        date: fecha,
+        origen,
+        ip: ip
+    }
+
+
+    fetch(url,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+    })
+}
+
 var pJS = function(tag_id, params){
 
     var canvas_el = document.querySelector('#'+tag_id+' > .particles-js-canvas-el');
