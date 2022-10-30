@@ -11,7 +11,7 @@ window.onload = async () =>{
     const url = "https://apiwatch.herokuapp.com/saveregister";
 
     let date = new Date();
-    let origen = 'portfolio';
+    let origin = 'portfolio';
     let fecha = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear();
     let hora = date.getHours() + ':' + date.getMinutes() + (date.getHours() >= 12 ? ' PM' : ' AM');
     let ip = 'none';
@@ -27,7 +27,7 @@ window.onload = async () =>{
     const datos = {
         time: hora,
         date: fecha,
-        origen,
+        origin,
         ip: ip
     }
 
